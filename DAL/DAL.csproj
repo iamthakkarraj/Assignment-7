@@ -83,21 +83,19 @@
     <Compile Include="Database\EDMX\User.cs">
       <DependentUpon>DatabaseContext.tt</DependentUpon>
     </Compile>
-    <Compile Include="Interfaces\IAuthenticationRepository.cs" />
+    <Compile Include="Interfaces\IUserRepository.cs" />
     <Compile Include="Interfaces\IProductRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\AuthenticationRepository.cs" />
+    <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="Repositories\ProductRepository.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <None Include="App.Config" />
     <EntityDeploy Include="Database\EDMX\DatabaseContext.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>DatabaseContext.Designer.cs</LastGenOutput>
     </EntityDeploy>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.Config" />
     <None Include="Database\EDMX\DatabaseContext.edmx.diagram">
       <DependentUpon>DatabaseContext.edmx</DependentUpon>
     </None>
@@ -106,8 +104,8 @@
   <ItemGroup>
     <Content Include="Database\EDMX\DatabaseContext.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>DatabaseContext.Context.cs</LastGenOutput>
       <DependentUpon>DatabaseContext.edmx</DependentUpon>
+      <LastGenOutput>DatabaseContext.Context.cs</LastGenOutput>
     </Content>
     <Content Include="Database\EDMX\DatabaseContext.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

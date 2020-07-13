@@ -4,6 +4,8 @@ GO
 USE [CSharpAssignment]
 GO
 
+SELECT * FROM [User]
+
 CREATE TABLE [Country] ([CountryId] INT PRIMARY KEY IDENTITY(1,1),
 							[Name] NVARCHAR(56))
 GO
@@ -25,8 +27,11 @@ CREATE TABLE [User] ([UserId] INT PRIMARY KEY IDENTITY(1,1),
 						[Address] NVARCHAR(256) NOT NULL,
 						[CityId] INT FOREIGN KEY REFERENCES [City]([CityId]),
 						[ZipCode] INT NOT NULL,
+						[IsActivated] BIT DEFAULT 0,
 						[Password] NVARCHAR(18) NOT NULL)
 GO
+
+
 
 CREATE TABLE [ProductCategory] ([CategoryId] INT PRIMARY KEY IDENTITY(1,1),
 									[Name] NVARCHAR(56) NOT NULL)
@@ -46,3 +51,41 @@ CREATE TABLE [Product] ([ProductId] INT PRIMARY KEY IDENTITY(1,1),
 							[ModifiedDate] DATETIME NULL)
 GO
 
+INSERT INTO [ProductCategory] VALUES ('Education'),
+										('Electronics'),
+										('Automobile'),
+										('Stationaries'),
+										('Sports'),
+										('Fashion')
+
+INSERT INTO [Country] ([Name]) VALUES('India'),
+										('Pakistan'),
+										('United States'),
+										('England'),
+										('China'),
+										('Russia')
+GO
+INSERT INTO [State] ([Name],[CountryId]) VALUES ('Gujarat',1),
+													('U.P.',1),
+													('M.P.',1),
+													('J.K.',1),
+													('Assam',1),
+													('Punjab',1),
+													('Rajasthan',1),
+													('Khyber Pakhtunkhw',2),
+													('Sindh',2),
+													('Balochistan',2),
+													('Gilgit Baltistan',2),
+													('Punjab',2)
+GO
+INSERT INTO [City] ([Name],[StateId]) VALUES ('Ahmedabad',1),
+												('Surat',1),
+												('Baroda',1),
+												('Junagadh',1),
+												('Porbandar',1),
+												('Nadiyad',1),
+												('Lucknow',2),
+												('Prayagraj',2),
+												('Kanpur',2),
+												('Varansi',2),
+												('Agra',2)

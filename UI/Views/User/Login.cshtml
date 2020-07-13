@@ -1,0 +1,38 @@
+﻿@model BLL.ViewModels.LoginModel
+
+<div class="container-fluid body-content d-flex justify-content-center">    
+    <div class="card-body position-relative" style="max-width:350px;">        
+        <form method="post" action="/User/Login">
+            @Html.AntiForgeryToken()
+            <div class="card-body ml-2 bg-white text-dark rounded-0 shadow border-primary" style="border-top:5px solid red;">
+                <fieldset>                    
+                    <legend class="text-primary">User Login</legend>                    
+                    <hr class="bg-primary" />
+                    <div class="form-group">
+                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control border-0 shadow", @placeholder = "Example@mail.com" } })
+                    </div>
+                    <div class="form-group">
+                        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                        @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control border-0 shadow", type = "password", @placeholder = "Password" } })
+                    </div>
+                    <div class="form-group">
+                        <input name="submit" class="border-0 rounded-0 shadow w-100 btn btn-primary"  value="Login" type="submit" />
+                    </div>
+                    <div class="form-group d-flex justify-content-center">
+                        <span>Don't have an account? <a href="/User/SignUp">Sign Up</a></span>
+                    </div>                    
+                </fieldset>
+            </div>            
+        </form>        
+    </div>    
+</div>
+
+<style>
+    .body-content{
+        margin-top:auto;
+    }
+</style>
+
+@Scripts.Render("~/Scripts/jquery.validate.min.js")
+@Scripts.Render("~/Scripts/jquery.validate.unobtrusive.min.js")

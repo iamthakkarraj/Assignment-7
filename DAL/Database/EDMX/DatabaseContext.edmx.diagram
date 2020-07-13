@@ -4,18 +4,18 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="daf63356a3c043cfa995c846f0d2ee2c" Name="Diagram1" >
-        <EntityTypeShape EntityType="CSharpAssignmentModel.City" Width="1.5" PointX="5.25" PointY="1.875" />
-        <EntityTypeShape EntityType="CSharpAssignmentModel.Country" Width="1.5" PointX="0.75" PointY="2.125" />
-        <EntityTypeShape EntityType="CSharpAssignmentModel.Product" Width="1.5" PointX="9.75" PointY="1" />
-        <EntityTypeShape EntityType="CSharpAssignmentModel.ProductCategory" Width="1.5" PointX="7.5" PointY="6.125" />
-        <EntityTypeShape EntityType="CSharpAssignmentModel.State" Width="1.5" PointX="3" PointY="1.875" />
-        <EntityTypeShape EntityType="CSharpAssignmentModel.User" Width="1.5" PointX="7.5" PointY="1.375" />
-        <AssociationConnector Association="CSharpAssignmentModel.FK__City__StateId__4E88ABD4" />
-        <AssociationConnector Association="CSharpAssignmentModel.FK__User__CityId__534D60F1" />
-        <AssociationConnector Association="CSharpAssignmentModel.FK__State__CountryId__4BAC3F29" />
-        <AssociationConnector Association="CSharpAssignmentModel.FK__Product__Categor__5812160E" />
-        <AssociationConnector Association="CSharpAssignmentModel.FK__Product__Created__5AEE82B9" />
+      <Diagram DiagramId="05333281944e46c9bd07cc6be8c9e904" Name="Diagram1">
+        <EntityTypeShape EntityType="CSharpAssignmentModel.City" Width="1.5" PointX="5.25" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CSharpAssignmentModel.Country" Width="1.5" PointX="0.75" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CSharpAssignmentModel.Product" Width="1.5" PointX="9.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="CSharpAssignmentModel.ProductCategory" Width="1.5" PointX="7.5" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CSharpAssignmentModel.State" Width="1.5" PointX="3" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CSharpAssignmentModel.User" Width="1.5" PointX="7.5" PointY="1.375" IsExpanded="true" />
+        <AssociationConnector Association="CSharpAssignmentModel.FK__City__StateId__4E88ABD4" ManuallyRouted="false" />
+        <AssociationConnector Association="CSharpAssignmentModel.FK__User__CityId__534D60F1" ManuallyRouted="false" />
+        <AssociationConnector Association="CSharpAssignmentModel.FK__State__CountryId__4BAC3F29" ManuallyRouted="false" />
+        <AssociationConnector Association="CSharpAssignmentModel.FK__Product__Categor__5812160E" ManuallyRouted="false" />
+        <AssociationConnector Association="CSharpAssignmentModel.FK__Product__Created__5AEE82B9" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -1,0 +1,9 @@
+-> DB.sql is in DAL Layer inside script folder
+-> tables -> product, user, product category, city, country, state
+-> city, country, state drop down uses ajax
+-> screenshots of the ui are also provided 
+-> password is stored in encrypted form
+-> static class for sending mail is created
+-> static class for encryption method is created
+-> static class for generic model mapper is created 
+-> using formcollection in multiple delete method

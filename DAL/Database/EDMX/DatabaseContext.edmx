@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="CSharpAssignmentModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="CSharpAssignmentModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="City">
           <Key>
             <PropertyRef Name="CityId" />
@@ -153,38 +153,11 @@
             <End Role="User" EntitySet="User" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="CSharpAssignmentModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityContainer Name="CSharpAssignmentEntities" annotation:LazyLoadingEnabled="true" >
-          <EntitySet Name="Cities" EntityType="CSharpAssignmentModel.City" />
-          <EntitySet Name="Countries" EntityType="CSharpAssignmentModel.Country" />
-          <EntitySet Name="Products" EntityType="CSharpAssignmentModel.Product" />
-          <EntitySet Name="ProductCategories" EntityType="CSharpAssignmentModel.ProductCategory" />
-          <EntitySet Name="States" EntityType="CSharpAssignmentModel.State" />
-          <EntitySet Name="Users" EntityType="CSharpAssignmentModel.User" />
-          <AssociationSet Name="FK__City__StateId__4E88ABD4" Association="CSharpAssignmentModel.FK__City__StateId__4E88ABD4">
-            <End Role="State" EntitySet="States" />
-            <End Role="City" EntitySet="Cities" />
-          </AssociationSet>
-          <AssociationSet Name="FK__User__CityId__534D60F1" Association="CSharpAssignmentModel.FK__User__CityId__534D60F1">
-            <End Role="City" EntitySet="Cities" />
-            <End Role="User" EntitySet="Users" />
-          </AssociationSet>
-          <AssociationSet Name="FK__State__CountryId__4BAC3F29" Association="CSharpAssignmentModel.FK__State__CountryId__4BAC3F29">
-            <End Role="Country" EntitySet="Countries" />
-            <End Role="State" EntitySet="States" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Product__Categor__5812160E" Association="CSharpAssignmentModel.FK__Product__Categor__5812160E">
-            <End Role="ProductCategory" EntitySet="ProductCategories" />
-            <End Role="Product" EntitySet="Products" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Product__Created__5AEE82B9" Association="CSharpAssignmentModel.FK__Product__Created__5AEE82B9">
-            <End Role="User" EntitySet="Users" />
-            <End Role="Product" EntitySet="Products" />
-          </AssociationSet>
-        </EntityContainer>
         <EntityType Name="City">
           <Key>
             <PropertyRef Name="CityId" />
@@ -192,8 +165,8 @@
           <Property Name="CityId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="56" FixedLength="false" Unicode="true" />
           <Property Name="StateId" Type="Int32" />
-          <NavigationProperty Name="State" Relationship="CSharpAssignmentModel.FK__City__StateId__4E88ABD4" FromRole="City" ToRole="State" />
-          <NavigationProperty Name="Users" Relationship="CSharpAssignmentModel.FK__User__CityId__534D60F1" FromRole="City" ToRole="User" />
+          <NavigationProperty Name="State" Relationship="Self.FK__City__StateId__4E88ABD4" FromRole="City" ToRole="State" />
+          <NavigationProperty Name="Users" Relationship="Self.FK__User__CityId__534D60F1" FromRole="City" ToRole="User" />
         </EntityType>
         <EntityType Name="Country">
           <Key>
@@ -201,34 +174,34 @@
           </Key>
           <Property Name="CountryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="56" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="States" Relationship="CSharpAssignmentModel.FK__State__CountryId__4BAC3F29" FromRole="Country" ToRole="State" />
+          <NavigationProperty Name="States" Relationship="Self.FK__State__CountryId__4BAC3F29" FromRole="Country" ToRole="State" />
         </EntityType>
         <EntityType Name="Product">
           <Key>
             <PropertyRef Name="ProductId" />
           </Key>
           <Property Name="ProductId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="56" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="56" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="CategoryId" Type="Int32" Nullable="false" />
           <Property Name="Code" Type="Int32" Nullable="false" />
-          <Property Name="Price" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
-          <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Price" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Status" Type="Boolean" />
           <Property Name="Discount" Type="Int32" />
           <Property Name="ImagePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="CreatedBy" Type="Int32" />
           <Property Name="CreatedDate" Type="DateTime" Precision="3" />
           <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="ProductCategory" Relationship="CSharpAssignmentModel.FK__Product__Categor__5812160E" FromRole="Product" ToRole="ProductCategory" />
-          <NavigationProperty Name="User" Relationship="CSharpAssignmentModel.FK__Product__Created__5AEE82B9" FromRole="Product" ToRole="User" />
+          <NavigationProperty Name="ProductCategory" Relationship="Self.FK__Product__Categor__5812160E" FromRole="Product" ToRole="ProductCategory" />
+          <NavigationProperty Name="User" Relationship="Self.FK__Product__Created__5AEE82B9" FromRole="Product" ToRole="User" />
         </EntityType>
         <EntityType Name="ProductCategory">
           <Key>
             <PropertyRef Name="CategoryId" />
           </Key>
           <Property Name="CategoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="56" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Products" Relationship="CSharpAssignmentModel.FK__Product__Categor__5812160E" FromRole="ProductCategory" ToRole="Product" />
+          <Property Name="Name" Type="String" MaxLength="56" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Products" Relationship="Self.FK__Product__Categor__5812160E" FromRole="ProductCategory" ToRole="Product" />
         </EntityType>
         <EntityType Name="State">
           <Key>
@@ -237,27 +210,27 @@
           <Property Name="StateId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="56" FixedLength="false" Unicode="true" />
           <Property Name="CountryId" Type="Int32" />
-          <NavigationProperty Name="Cities" Relationship="CSharpAssignmentModel.FK__City__StateId__4E88ABD4" FromRole="State" ToRole="City" />
-          <NavigationProperty Name="Country" Relationship="CSharpAssignmentModel.FK__State__CountryId__4BAC3F29" FromRole="State" ToRole="Country" />
+          <NavigationProperty Name="Cities" Relationship="Self.FK__City__StateId__4E88ABD4" FromRole="State" ToRole="City" />
+          <NavigationProperty Name="Country" Relationship="Self.FK__State__CountryId__4BAC3F29" FromRole="State" ToRole="Country" />
         </EntityType>
         <EntityType Name="User">
           <Key>
             <PropertyRef Name="UserId" />
           </Key>
           <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="88" FixedLength="false" Unicode="true" />
-          <Property Name="Email" Type="String" Nullable="false" MaxLength="88" FixedLength="false" Unicode="true" />
-          <Property Name="ContactNumber" Type="String" Nullable="false" MaxLength="14" FixedLength="false" Unicode="true" />
-          <Property Name="Address" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="88" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="88" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ContactNumber" Type="String" MaxLength="14" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="CityId" Type="Int32" />
           <Property Name="ZipCode" Type="Int32" Nullable="false" />
-          <Property Name="Password" Type="String" Nullable="false" MaxLength="18" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="City" Relationship="CSharpAssignmentModel.FK__User__CityId__534D60F1" FromRole="User" ToRole="City" />
-          <NavigationProperty Name="Products" Relationship="CSharpAssignmentModel.FK__Product__Created__5AEE82B9" FromRole="User" ToRole="Product" />
+          <Property Name="Password" Type="String" MaxLength="18" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="City" Relationship="Self.FK__User__CityId__534D60F1" FromRole="User" ToRole="City" />
+          <NavigationProperty Name="Products" Relationship="Self.FK__Product__Created__5AEE82B9" FromRole="User" ToRole="Product" />
         </EntityType>
         <Association Name="FK__City__StateId__4E88ABD4">
-          <End Type="CSharpAssignmentModel.State" Role="State" Multiplicity="0..1" />
-          <End Type="CSharpAssignmentModel.City" Role="City" Multiplicity="*" />
+          <End Role="State" Type="Self.State" Multiplicity="0..1" />
+          <End Role="City" Type="Self.City" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="State">
               <PropertyRef Name="StateId" />
@@ -268,8 +241,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__User__CityId__534D60F1">
-          <End Type="CSharpAssignmentModel.City" Role="City" Multiplicity="0..1" />
-          <End Type="CSharpAssignmentModel.User" Role="User" Multiplicity="*" />
+          <End Role="City" Type="Self.City" Multiplicity="0..1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="City">
               <PropertyRef Name="CityId" />
@@ -280,8 +253,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__State__CountryId__4BAC3F29">
-          <End Type="CSharpAssignmentModel.Country" Role="Country" Multiplicity="0..1" />
-          <End Type="CSharpAssignmentModel.State" Role="State" Multiplicity="*" />
+          <End Role="Country" Type="Self.Country" Multiplicity="0..1" />
+          <End Role="State" Type="Self.State" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Country">
               <PropertyRef Name="CountryId" />
@@ -292,8 +265,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Product__Categor__5812160E">
-          <End Type="CSharpAssignmentModel.ProductCategory" Role="ProductCategory" Multiplicity="1" />
-          <End Type="CSharpAssignmentModel.Product" Role="Product" Multiplicity="*" />
+          <End Role="ProductCategory" Type="Self.ProductCategory" Multiplicity="1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ProductCategory">
               <PropertyRef Name="CategoryId" />
@@ -304,8 +277,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Product__Created__5AEE82B9">
-          <End Type="CSharpAssignmentModel.User" Role="User" Multiplicity="0..1" />
-          <End Type="CSharpAssignmentModel.Product" Role="Product" Multiplicity="*" />
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="User">
               <PropertyRef Name="UserId" />
@@ -315,75 +288,103 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityContainer Name="CSharpAssignmentEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Cities" EntityType="Self.City" />
+          <EntitySet Name="Countries" EntityType="Self.Country" />
+          <EntitySet Name="Products" EntityType="Self.Product" />
+          <EntitySet Name="ProductCategories" EntityType="Self.ProductCategory" />
+          <EntitySet Name="States" EntityType="Self.State" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <AssociationSet Name="FK__City__StateId__4E88ABD4" Association="Self.FK__City__StateId__4E88ABD4">
+            <End Role="State" EntitySet="States" />
+            <End Role="City" EntitySet="Cities" />
+          </AssociationSet>
+          <AssociationSet Name="FK__User__CityId__534D60F1" Association="Self.FK__User__CityId__534D60F1">
+            <End Role="City" EntitySet="Cities" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK__State__CountryId__4BAC3F29" Association="Self.FK__State__CountryId__4BAC3F29">
+            <End Role="Country" EntitySet="Countries" />
+            <End Role="State" EntitySet="States" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Product__Categor__5812160E" Association="Self.FK__Product__Categor__5812160E">
+            <End Role="ProductCategory" EntitySet="ProductCategories" />
+            <End Role="Product" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Product__Created__5AEE82B9" Association="Self.FK__Product__Created__5AEE82B9">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Product" EntitySet="Products" />
+          </AssociationSet>
+        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="CSharpAssignmentModelStoreContainer" CdmEntityContainer="CSharpAssignmentEntities" >
+        <EntityContainerMapping StorageEntityContainer="CSharpAssignmentModelStoreContainer" CdmEntityContainer="CSharpAssignmentEntities">
           <EntitySetMapping Name="Cities">
             <EntityTypeMapping TypeName="CSharpAssignmentModel.City">
               <MappingFragment StoreEntitySet="City">
-                <ScalarProperty Name="StateId" ColumnName="StateId" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="CityId" ColumnName="CityId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="StateId" ColumnName="StateId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Countries">
             <EntityTypeMapping TypeName="CSharpAssignmentModel.Country">
               <MappingFragment StoreEntitySet="Country">
-                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Products">
             <EntityTypeMapping TypeName="CSharpAssignmentModel.Product">
               <MappingFragment StoreEntitySet="Product">
-                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
-                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
-                <ScalarProperty Name="Discount" ColumnName="Discount" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Price" ColumnName="Price" />
-                <ScalarProperty Name="Code" ColumnName="Code" />
-                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+                <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ProductCategories">
             <EntityTypeMapping TypeName="CSharpAssignmentModel.ProductCategory">
               <MappingFragment StoreEntitySet="ProductCategory">
-                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="States">
             <EntityTypeMapping TypeName="CSharpAssignmentModel.State">
               <MappingFragment StoreEntitySet="State">
-                <ScalarProperty Name="CountryId" ColumnName="CountryId" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="StateId" ColumnName="StateId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CountryId" ColumnName="CountryId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="CSharpAssignmentModel.User">
               <MappingFragment StoreEntitySet="User">
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
-                <ScalarProperty Name="CityId" ColumnName="CityId" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="ContactNumber" ColumnName="ContactNumber" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="ContactNumber" ColumnName="ContactNumber" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="CityId" ColumnName="CityId" />
+                <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

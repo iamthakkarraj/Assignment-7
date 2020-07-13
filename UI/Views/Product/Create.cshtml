@@ -1,0 +1,116 @@
+﻿@model BLL.ViewModels.ProductModel
+
+
+<div class="row ml-0">
+    <h4>Create</h4>
+    <a href="/Product/Index/" class="btn btn-primary border-0 rounded-0 shadow ml-2">
+        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+        Go back to Index
+    </a>
+</div>
+
+<hr class="bg-primary" />
+
+<form method="post" action="/Product/Create" enctype="multipart/form-data">
+
+    <div class="col-md-4 col-12 pl-0">
+
+        <div class="form-group d-flex justify-content-between">
+            <div class="d-flex flex-column justify-content-center col-3">
+                @Html.LabelFor(model => model.Name)
+            </div>
+            <div class="col-9 pr-0">
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control rounded-0 border-0 shadow", @placeholder = "Product Name" } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group d-flex justify-content-between">
+            <div class="d-flex flex-column justify-content-center col-3">
+                @Html.LabelFor(model => model.CategoryId)
+            </div>
+            <div class="col-8 pr-0">
+                @Html.DropDownListFor(model => model.CategoryId, new SelectList(Model.CategoryList, "CategoryId", "Name"), "Select Category", new { @class = "form-control rounded-0 border-0 shadow" })
+                @Html.ValidationMessageFor(model => model.CategoryId, "", new { @class = "text-danger" })
+            </div>
+            <a href="#" class=" col-1 d-flex flex-column justify-content-center rounded-0 btn-primary shadow btn btn-sm">
+                <i class="fa fa-plus" aria-hidden="true"></i>
+            </a>
+        </div>
+
+        <div class="form-group d-flex justify-content-between">
+            <div class="d-flex flex-column justify-content-center col-3">
+                @Html.LabelFor(model => model.Price)
+            </div>
+            <div class="col-9 pr-0">
+                @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control rounded-0 border-0 shadow", @placeholder = "Product Price" } })
+                @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group d-flex justify-content-between">
+            <div class="d-flex flex-column justify-content-center col-3">
+                @Html.LabelFor(model => model.Code)
+            </div>
+            <div class="col-9 pr-0">
+                @Html.EditorFor(model => model.Code, new { htmlAttributes = new { @class = "form-control rounded-0 border-0 shadow", @placeholder = "Product Code" } })
+                @Html.ValidationMessageFor(model => model.Code, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group d-flex justify-content-between">
+            <div class="d-flex flex-column justify-content-center col-3">
+                @Html.LabelFor(model => model.Discount)
+            </div>
+            <div class="col-9 pr-0">
+                @Html.EditorFor(model => model.Discount, new { htmlAttributes = new { @class = "form-control rounded-0 border-0 shadow", @placeholder = "Product Discount" } })
+                @Html.ValidationMessageFor(model => model.Discount, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-between">
+            <div class="col-3">
+                @Html.LabelFor(model => model.Status)
+            </div>
+            <div class="col-9 d-flex justify-content-between">
+                <span>
+                    <input type="radio" id="Status" name="Status" data-val="true" data-val-required="This field is required" value="true" />&nbsp;In Stock
+                </span>
+                <span>
+                    <input type="radio" id="Status" name="Status" data-val="true" data-val-required="This field is required" value="false" />&nbsp;Out of Stock&nbsp;&nbsp;
+                </span>                
+            </div>
+            @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group d-flex justify-content-between">
+            <div class="d-flex flex-column justify-content-center col-3">
+                @Html.LabelFor(model => model.Description)
+            </div>
+            <div class="col-9 pr-0">
+                @Html.TextAreaFor(model => model.Description, new { @class = "form-control rounded-0 border-0 shadow", @row = "5", @placeholder = "Write Short Description of The Product", maxlength = 256 })
+                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group d-flex justify-content-between">
+            <div class="d-flex flex-column justify-content-center col-3">
+                @Html.LabelFor(model => model.ProductImage)
+            </div>
+            <div class="col-9 pr-0">
+                <label class="btn btn-block btn-file bg-primary text-light rounded-0 shadow">
+                    @Html.TextBoxFor(model => model.ProductImage, new { type = "File", @class = "text-box rounded-0" })
+                </label>
+                @Html.ValidationMessageFor(model => model.ProductImage, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group d-flex justify-content-between ml-3">
+            @Html.HiddenFor(model => model.ProductId)
+            <input name="submit" class="btn col-5 mr-3 rounded-0 shadow border-0 btn-primary" type="submit" value="+ Create" />
+            <input name="Reset" class="btn col-6 rounded-0 shadow border-0 btn-danger" type="reset" value="⟳ Reset" />
+        </div>
+
+    </div>
+
+</form>      

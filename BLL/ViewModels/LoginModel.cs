@@ -15,8 +15,6 @@ namespace BLL.ViewModels {
         [Display(Name = "Your Email Address.")]
         public string Email { get; set; }
 
-        [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8}$", 
-            ErrorMessage = "Password must contain a capital letter, a small letter and a special symbol.")]
         [Required(ErrorMessage = "Please Enter your password.")]
         [Display(Name = "Your Pasdword.")]
         public string Password { get; set; }

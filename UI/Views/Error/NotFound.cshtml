@@ -1,0 +1,36 @@
+﻿
+@{
+    ViewBag.Title = "NotFound";
+}
+
+<section class="container">
+
+    <p class="display-4 text-danger">
+        <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+        Oops !
+        <div class="bg-danger w-25 overline"></div>
+    </p>
+
+    <p class="display-2">
+        <span class="text-danger">404 </span> Page Not Found.
+        <div class="bg-warning overline"></div>
+    </p>
+
+    <a href="/User/Login" class="btn btn-outline-primary rounded-0">
+        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+        Go Back To Home
+    </a>
+
+</section>
+
+<style>
+    .overline {
+        position: relative;
+        width: 100%;
+        height: 32px;
+        top: -40px;
+        left: 32px;
+        opacity: 0.6;
+    }
+</style>
+

@@ -1,0 +1,122 @@
+﻿@model BLL.ViewModels.SignUpModel
+<div class="d-flex justify-content-center">
+    <div class="card-body position-relative col-6">
+        <form method="post" action="/User/SignUp">            
+            <div class="card-body ml-2 bg-white text-dark rounded-0 shadow border-primary" style="border-top:5px solid red;">
+                <fieldset class="col-12">
+                    <legend class="text-primary">User SignUp</legend>
+                    <hr class="bg-primary" />
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-group">
+                                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control border-0 shadow", @placeholder = "Your Name" } })
+                            </div>
+                            <div class="form-group">
+                                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control border-0 shadow", @placeholder = "Email-Id" } })
+                            </div>
+                            <div class="form-group">
+                                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control border-0 shadow", type = "password", @placeholder = "Password" } })
+                            </div>
+                            <div class="form-group">
+                                @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
+                                @Html.EditorFor(model => model.ConfirmPassword, new { htmlAttributes = new { @class = "form-control border-0 shadow", type = "password", @placeholder = "Password" } })
+                            </div>
+                            <div class="form-group">
+                                @Html.ValidationMessageFor(model => model.ContactNumber, "", new { @class = "text-danger" })
+                                @Html.EditorFor(model => model.ContactNumber, new { htmlAttributes = new { @class = "form-control border-0 shadow", type = "number", @placeholder = "Contact Number" } })
+                            </div>
+                            <div class="form-group">
+                                @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                                @Html.TextAreaFor(model => model.Address, new { @class = "form-control border-0 shadow", type = "text", @placeholder = "Address" })
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <select class="form-control border-0 rounded-0 shadow" name="CountryId" id="CountryId" data-val="true" data-val-required="This field is required"></select>
+                            </div>
+                            <div class="form-group">
+                                <select class="form-control border-0 rounded-0 shadow" name="StateId" id="StateId" data-val="true" data-val-required="This field is required"></select>
+                            </div>
+                            <div class="form-group">
+                                <select class="form-control border-0 rounded-0 shadow" name="CityId" id="CityId" data-val="true" data-val-required="This field is required"></select>
+                                @Html.ValidationMessageFor(model => model.CityId, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group">
+                                @Html.ValidationMessageFor(model => model.ZipCode, "", new { @class = "text-danger" })
+                                @Html.EditorFor(model => model.ZipCode, new { htmlAttributes = new { @class = "form-control border-0 shadow", type = "number", @placeholder = "ZipCode" } })
+                            </div>                            
+                        </div>
+                    </div>                    
+                    <div class="form-group ">
+                        <input name="submit" class="col-12 border-0 rounded-0 shadow btn btn-primary" value="SignUp" type="submit" />
+                    </div>
+                    <div class="form-group d-flex justify-content-center">
+                        <span>Already have an account? <a href="/User/Login">Login</a></span>
+                    </div>
+                </fieldset>
+            </div>
+        </form>
+    </div>
+</div>
+
+<style>
+    .body-content {
+        margin-top: auto;
+    }
+</style>
+
+<script>
+    $(document).ready(function () {
+    $.ajax({
+        type: "GET",
+        url: "https://localhost:44337/User/GetCountries",
+        async: false,
+        success: function (data) {
+            console.table(data);
+            $("#CountryId").empty();
+            $("#CountryId").append("<option selected disabled>Select a country</option>");
+            data.forEach(function (item) {
+                $("#CountryId").append(`<option value="${item.CountryId}">${item.Name}</option>`);
+            });
+        }
+    });
+
+    $("#CountryId").change(function () {
+        $.ajax({
+            type: "GET",
+            url: 'https://localhost:44337/User/GetStates?id=' + $("#CountryId").val(),
+            success: function (items) {
+                console.table(items);
+                $("#StateId").empty();
+                $("#StateId").append("<option selected disabled>Select a state</option>");
+                items.forEach(function (item) {
+                    $("#StateId").append(`<option value="${item.StateId}">${item.Name}</option>`);
+                });
+            }
+        })
+    });
+
+    $("#StateId").change(function () {
+        $.ajax({
+            type: "GET",
+            url: 'https://localhost:44337/User/GetCities?id=' + $("#StateId").val(),
+            success: function (items) {
+                console.table(items);
+                $("#CityId").empty();
+                $("#CityId").append("<option selected disabled>Select a city</option>");
+                items.forEach(function (item) {
+                    $("#CityId").append(`<option value="${item.CityId}">${item.Name}</option>`);
+                });
+            }
+        })
+    });
+
+
+})
+</script>
+
+@Scripts.Render("~/Scripts/jquery.validate.min.js")
+@Scripts.Render("~/Scripts/jquery.validate.unobtrusive.min.js")

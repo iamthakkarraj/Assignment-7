@@ -37,6 +37,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -45,17 +46,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Interfaces\IAuthenticationServices.cs" />
+    <Compile Include="Interfaces\IUserServices.cs" />
     <Compile Include="Interfaces\IProductServices.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\AuthenticationServices.cs" />
+    <Compile Include="Services\UserServices.cs" />
     <Compile Include="Services\CryptoServices.cs" />
     <Compile Include="Services\MailServices.cs" />
     <Compile Include="Services\ModelMapperServices.cs" />
     <Compile Include="Services\ProductServices.cs" />
+    <Compile Include="ViewModels\CityModel.cs" />
+    <Compile Include="ViewModels\CountryModel.cs" />
     <Compile Include="ViewModels\LoginModel.cs" />
+    <Compile Include="ViewModels\ProductCategoryModel.cs" />
     <Compile Include="ViewModels\ProductModel.cs" />
     <Compile Include="ViewModels\SignUpModel.cs" />
+    <Compile Include="ViewModels\StateModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
